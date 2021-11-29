@@ -1,0 +1,12 @@
+Package: ROKETworkflow
+Type: Package
+Title: ROKET analysis workflow
+Version: 1.0.0
+Date: 2021-11-28
+Author: Paul Little
+Maintainer: Paul Little <plittle@fredhutch.org>
+Description: Package runs real data workflow steps.
+Encoding: UTF-8
+Imports: data.table, Rcpp, smartr, ggplot2, survival, MiRKAT
+RoxygenNote: 7.1.2
+License: GPL (>= 3)
