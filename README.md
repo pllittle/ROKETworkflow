@@ -6,8 +6,8 @@ The workflow steps to analyze TCGA cancer types are contained within this packag
 
 1. Install the workflow package
 
-* *smartr* can be found [here](https://github.com/pllittle/smartr)
-* *ROKET* can be found [here](https://github.com/pllittle/ROKET)
+* `smartr` can be found [here](https://github.com/pllittle/smartr)
+* `ROKET` can be found [here](https://github.com/pllittle/ROKET)
 
 ```
 # Dependencies
@@ -60,7 +60,7 @@ ROKETworkflow:::down_SPMs(my_dirs = my_dirs)
 
 3. Pre-process data
 
-First, prepare somatic point mutation matrices. Then calculate gene ontology (GO-based), canonical pathways (PATH-based), and mutual exclusivity (ME-based) gene similarity matrices for various mutation frequency thresholds (e.g. include genes mutated in at least 5 samples would require *min_gene_mut = 5*).
+First, filter somatic point mutation and convert into gene mutation status (1 = mutated gene, 0 = unmutated gene) by sample matrices. Then calculate gene ontology (GO-based), canonical pathways (PATH-based), and mutual exclusivity (ME-based) gene similarity matrices for various mutation frequency thresholds (e.g. include genes mutated in at least 5 samples would require `min_gene_mut = 5`).
 
 ```
 mSPM = ROKETworkflow:::make_SPM_mat(my_dirs = my_dirs)
@@ -78,7 +78,7 @@ dim(gsim); gsim[1:5,1:5,]
 
 4. Calculate optimal transport distances
 
-This code should be run on a cluster with multiple threads. This step could take several hours or days, depending on the distribution of gene mutation frequency. For one or multiple *LAMBDA* penalties, calculate optimal transport based distances based on the three gene similarities.
+This code should be run on a cluster with multiple threads. This step could take several hours or days, depending on the distribution of gene mutation frequency. For one or multiple `LAMBDA` penalties, calculate optimal transport based distances based on the three gene similarities.
 
 ```
 LAMBDAs = c(0.5, 1.0, 5.0, Inf)
