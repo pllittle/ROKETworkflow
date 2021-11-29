@@ -8,6 +8,7 @@ The workflow steps to analyze TCGA cancer types are contained within this packag
 
 * `smartr` can be found [here](https://github.com/pllittle/smartr)
 * `ROKET` can be found [here](https://github.com/pllittle/ROKET)
+* `ggh4x` can be found [here](https://github.com/teunbrand/ggh4x)
 
 ```
 # Dependencies
