@@ -7,6 +7,8 @@ Author: Paul Little
 Maintainer: Paul Little <plittle@fredhutch.org>
 Description: Package runs real data workflow steps.
 Encoding: UTF-8
-Imports: data.table, Rcpp, smartr, ggplot2, survival, MiRKAT
+Imports: data.table, Rcpp, smartr, ggplot2, 
+		survival, MiRKAT, readxl, stats, ROKET,
+		utils, GOSemSim, ggh4x, car
 RoxygenNote: 7.1.2
 License: GPL (>= 3)
