@@ -2588,7 +2588,8 @@ new_ANA_AGG = function(my_dirs){
 			labels = c("Euclidean",expression(paste("OT (",lambda," = 0.5)")),
 				expression(paste("OT (",lambda," = 1.0)")),
 				expression(paste("OT (",lambda," = 5.0)")),
-				expression(paste("OT (",lambda," = ",infinity,")"))))
+				# expression(paste("OT (",lambda," = ",infinity,")"))
+				"OT (Balanced)"))
 		lev_GS = sort(unique(res2$GS)); lev_GS
 		res2$GS = factor(res2$GS,levels = lev_GS[c(1,2,4,3)],
 			labels = c("Euclidean","GO","PATH","ME"))
@@ -2736,7 +2737,8 @@ new_ANA_AGG = function(my_dirs){
 				labels = c("Euclidean",expression(paste("OT (",lambda," = 0.5)")),
 					expression(paste("OT (",lambda," = 1.0)")),
 					expression(paste("OT (",lambda," = 5.0)")),
-					expression(paste("OT (",lambda," = ",infinity,")"))))
+					# expression(paste("OT (",lambda," = ",infinity,")"))
+					"OT (Balanced)"))
 			lev_GS = sort(unique(res2$GS)); # lev_GS
 			res2$GS = factor(res2$GS,levels = lev_GS[c(1,2,4,3)],
 				labels = c("Euclidean","GO","PATH","ME"))
