@@ -10,7 +10,7 @@ The workflow steps to analyze TCGA cancer types are contained within this packag
 * `ROKET` can be found [here](https://github.com/pllittle/ROKET)
 * `ggh4x` can be found [here](https://github.com/teunbrand/ggh4x)
 
-```
+```R
 # Dependencies
 all_packs = as.character(installed.packages()[,1])
 req_packs = c("data.table","Rcpp","smartr",
@@ -30,13 +30,13 @@ if( !("ROKETworkflow" %in% all_packs) )
 
 Also clone the repo.
 
-```
+```Shell
 git clone https://github.com/pllittle/ROKETworkflow.git
 ```
 
 2. Download data
 
-```
+```R
 library(ROKETworkflow)
 
 # Pick a cancer type
@@ -63,7 +63,7 @@ ROKETworkflow:::down_SPMs(my_dirs = my_dirs)
 
 First, filter somatic point mutation and convert into gene mutation status (1 = mutated gene, 0 = unmutated gene) by sample matrices. Then calculate gene ontology (GO-based), canonical pathways (PATH-based), and mutual exclusivity (ME-based) gene similarity matrices for various mutation frequency thresholds (e.g. include genes mutated in at least 5 samples would require `min_gene_mut = 5`).
 
-```
+```R
 mSPM = ROKETworkflow:::make_SPM_mat(my_dirs = my_dirs)
 dim(mSPM); mSPM[1:5,1:4]
 
@@ -81,7 +81,7 @@ dim(gsim); gsim[1:5,1:5,]
 
 This code should be run on a cluster with multiple threads. This step could take several hours or days, depending on the distribution of gene mutation frequency. For one or multiple `LAMBDA` penalties, calculate optimal transport based distances based on the three gene similarities.
 
-```
+```R
 LAMBDAs = c(0.5, 1.0, 5.0, Inf)
 
 # Increase this if more threads are available
@@ -95,7 +95,7 @@ ROKETworkflow::calc_full_DIST(my_dirs = my_dirs,
 
 5. Determine null models per cancer type and outcome and run kernel regressions with hypothesis testing
 
-```
+```R
 # Specify how many permutations
 nPERM = 1e5
 
@@ -106,7 +106,7 @@ ROKETworkflow::ANA_TEST_final(my_dirs = my_dirs,
 
 6. Summarize over multiple LAMBDAs, cancer types, gene mutation frequencies, clinical outcomes. Compare and contrast findings between Euclidean and optimal transport. The function below assumes all 17 cancer types were processed and analyzed at the 4 LAMBDA penalties, 6 gene mutation frequency thresholds.
 
-```
+```R
 ROKETworkflow::new_ANA_AGG(my_dirs = my_dirs)
 ```
 
