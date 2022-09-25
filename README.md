@@ -6,14 +6,14 @@ The workflow steps to analyze TCGA cancer types are contained within this packag
 
 1. Install the workflow package
 
-* `smartr` can be found [here](https://github.com/pllittle/smartr)
+* `smarter` can be found [here](https://github.com/pllittle/smarter)
 * `ROKET` can be found [here](https://github.com/pllittle/ROKET)
 * `ggh4x` can be found [here](https://github.com/teunbrand/ggh4x)
 
 ```R
 # Dependencies
 all_packs = as.character(installed.packages()[,1])
-req_packs = c("data.table","Rcpp","smartr",
+req_packs = c("data.table","Rcpp","smarter",
 	"ggplot2","MiRKAT","readxl","ROKET",
 	"GOSemSim","ggh4x","devtools")
 

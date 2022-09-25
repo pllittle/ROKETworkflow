@@ -1115,7 +1115,7 @@ calc_full_DIST = function(my_dirs,rmWGA = TRUE,
 		ot_out = run_myOTs(ZZ = sMUT[,subj_names],COST = COST,
 			EPS = EPS,LAMBDA1 = LAMBDA_2,LAMBDA2 = LAMBDA_2,
 			balance = BAL,conv = conv,max_iter = 3e3,ncores = ncores,
-			show = FALSE,show_iter = 50)
+			verbose = FALSE,show_iter = 50)
 		
 		# Save output
 		saveRDS(ot_out,rds_fn)
@@ -2134,8 +2134,8 @@ RDA_REG_final = function(my_dirs,DAT,YY,OT,EUC,
 				data = smart_df(XX_2))
 			RESI = as.numeric(cout$residuals)
 			names(RESI) = int_subjs
-			fit_perm = kernTEST(RESI = RESI,KK = KK,nPERMS = nPERM,
-				iter1 = 2.5e2,iter2 = 5e3,verbose = TRUE)
+			fit_perm = kernTEST(RESI = RESI,KK = KK,
+				nPERMS = nPERM,ncores = 1)
 			
 		} else { # Run continuous regression
 			
@@ -2143,8 +2143,8 @@ RDA_REG_final = function(my_dirs,DAT,YY,OT,EUC,
 			lm_out = lm(DAT[,YY] ~ .,data = smart_df(XX_2))
 			RESI = as.numeric(lm_out$residuals)
 			names(RESI) = int_subjs
-			fit_perm = kernTEST(RESI = RESI,KK = KK,nPERMS = nPERM,
-				iter1 = 2.5e2,iter2 = 5e3,verbose = TRUE)
+			fit_perm = kernTEST(RESI = RESI,KK = KK,
+				nPERMS = nPERM,ncores = 1)
 			
 		}
 		
@@ -2777,39 +2777,6 @@ new_ANA_AGG = function(my_dirs){
 }
 
 
-
-
-#' @importFrom smartr smart_reqNames smart_table
-#'	smart_merge name_change smart_df smart_rmcols
-#'	smart_progress smart_names smart_mkdir smart_heatmap
-#'	smart_colors print_latex_table
-#' @importFrom ggplot2 aes element_blank element_line theme
-#'	element_rect element_text facet_grid facet_wrap ylim unit
-#'	geom_abline geom_bar geom_histogram geom_hline geom_point
-#'	geom_segment geom_text ggplot ggsave ggtitle guide_legend
-#'	guides label_parsed labs position_dodge scale_color_manual
-#'	xlab ylab scale_shape_manual
-#' @importFrom ggh4x facet_nested
-#' @importFrom survival coxph
-#' @importFrom stats dhyper fisher.test glm pnorm
-#'	quantile as.formula dist drop1 formula lm
-#'	model.matrix
-#' @importFrom car Anova
-#' @importFrom grDevices dev.off png
-#' @importFrom utils str head tail
-#' @importFrom readxl read_excel
-#' @importFrom GOSemSim godata mgeneSim
-#' @importFrom ROKET run_myOTs kernTEST
-NULL
-
-# Steps to create/check/install package from directory
-# bb = strsplit(getwd(),"/")[[1]]; pack_dir = paste(bb[-length(bb)],collapse = "/")
-# pack = strsplit(pack_dir,"/")[[1]]; pack = pack[length(pack)]
-# if( pack %in% installed.packages()[,1] ){ remove.packages(pack); q("no")}
-# Rcpp::compileAttributes(pkgdir = pack_dir)
-# devtools::document(pkg = pack_dir); usethis::use_gpl3_license()
-# devtools::check(pkg = pack_dir,manual = TRUE,cran = TRUE,error_on = "note")
-# devtools::install(pack_dir)
 
 ###
 
